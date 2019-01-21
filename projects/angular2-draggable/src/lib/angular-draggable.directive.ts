@@ -223,7 +223,11 @@ export class AngularDraggableDirective implements OnInit, OnDestroy, OnChanges, 
       translateY = translateY / this.scale;
     }
 
-    let value = `translate(${translateX}px, ${translateY}px)`;
+    let value = `none`;
+
+    if (translateX > 0 || translateY > 0) {
+      value = `translate(${translateX}px, ${translateY}px)`;
+    }
 
     this.renderer.setStyle(this.el.nativeElement, 'transform', value);
     this.renderer.setStyle(this.el.nativeElement, '-webkit-transform', value);
